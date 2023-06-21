@@ -1,0 +1,1 @@
+export const BOT_NAME = 'portfolio_mailer_bot'
