@@ -22,8 +22,6 @@ jobs:
             touch .env
             echo "${{ secrets.PROD_ENV_FILE }}" > .env
             npm prune # we remove any unused dependencies
-            npm install # we install any missing dependencies    
-      - name: Start app with PM2
-        run: |
-          cd /home/gitactions/my_portfolio_backend
-          pm2 start "npm run start:prod" --name portfolio_backend --cwd /home/gitactions/my_portfolio_backend --update-env
+            npm install # we install any missing dependencies
+            npm run build
+            pm2 start "npm run start:prod" --name portfolio_backend --cwd /home/gitactions/my_portfolio_backend --update-env
