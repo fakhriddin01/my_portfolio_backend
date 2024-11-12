@@ -5,7 +5,7 @@
   "compilerOptions": {
     "deleteOutDir": true,
     "assets": [
-      { "include": "src/static/**/*", "outDir": "dist/static" }
+      { "include": "static/**/*", "outDir": "dist" }
     ]
   }
 }
