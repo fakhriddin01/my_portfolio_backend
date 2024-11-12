@@ -35,7 +35,7 @@ import { TelegrafModule } from 'nestjs-telegraf';
       })
   }),
     ServeStaticModule.forRoot({
-      rootPath: join(__dirname, 'static'),
+      rootPath: join(__dirname, '..', 'static'),
     }),
     ConfigModule.forRoot({ envFilePath: '.env', isGlobal: true}),
     SequelizeModule.forRoot({
