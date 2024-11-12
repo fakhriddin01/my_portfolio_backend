@@ -1,6 +1,7 @@
-import { NestFactory, Logger } from '@nestjs/core';
+import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { urlencoded, json } from 'express';
+import { Logger } from '@nestjs/common'; // Correct import
 
 async function start() {
   const logger = new Logger('HTTP'); // Logger for HTTP requests
