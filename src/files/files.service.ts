@@ -7,12 +7,12 @@ import * as uuid from 'uuid'
 @Injectable()
 export class FilesService {
 
-    private filePath = process.env.FILE_PATH || '/home/files';
+    private filePath = '/home/files';
     
     async createFile(file: any): Promise<string> {
         try {
             const fileName = uuid.v4() + file.originalname;
-            
+            console.log(filePath)
             if(!fs.existsSync(filePath)) {
                 fs.mkdirSync(filePath, { recursive: true});
             }
