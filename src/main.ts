@@ -1,11 +1,11 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { urlencoded, json } from 'express';
-import { Logger } from '@nestjs/common'; // Correct import
+import { CustomLoggerService } from './logger/logger.service'; // Import custom logger
 
 async function start() {
-  const logger = new Logger('HTTP'); // Logger for HTTP requests
   const app = await NestFactory.create(AppModule, { cors: true });
+  const logger = new CustomLoggerService(); // Use custom logger
   const PORT = process.env.PORT || 3000;
   
   app.setGlobalPrefix('api');
