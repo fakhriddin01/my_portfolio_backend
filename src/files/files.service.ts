@@ -6,10 +6,12 @@ import * as uuid from 'uuid'
 
 @Injectable()
 export class FilesService {
+
+    private filePath = process.env.FILE_PATH || '/home/files';
+    
     async createFile(file: any): Promise<string> {
         try {
             const fileName = uuid.v4() + file.originalname;
-            const filePath = path.resolve(__dirname,'..', '..', 'static');
             
             if(!fs.existsSync(filePath)) {
                 fs.mkdirSync(filePath, { recursive: true});
@@ -28,7 +30,6 @@ export class FilesService {
 
         async removeFile(fileName: string){
             try {
-                const filePath = path.resolve(__dirname, '..', '..', 'static');
                 fs.rmSync(path.join(filePath, fileName));
                 console.log("file deleted");
                 return fileName;
@@ -60,7 +61,6 @@ export class FilesService {
                 const extension = contentType.split('/')[1];
                 const filename = `${uuid.v4()}.${extension}`; // Unique filename using UUIDv4
                 
-                const filePath = path.resolve(__dirname,'..', '..', 'static');
                 if(!fs.existsSync(filePath)) {
                     fs.mkdirSync(filePath, { recursive: true});
                 }
