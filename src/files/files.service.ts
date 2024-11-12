@@ -11,7 +11,6 @@ export class FilesService {
         try {
             const fileName = uuid.v4() + file.originalname;
             const filePath = '/home/files';
-            console.log(filePath)
             if(!fs.existsSync(filePath)) {
                 fs.mkdirSync(filePath, { recursive: true});
             }
@@ -70,7 +69,7 @@ export class FilesService {
                 
                 // Replace the image source with the unique filename
                 const localPath = `${process.env.FILEPATH}/${filename}`;
-                console.log(localPath);
+                
                 content = content.replace(`data:${contentType};base64,${data}`, localPath);
               });
             
