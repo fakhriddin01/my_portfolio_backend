@@ -6,12 +6,11 @@ import * as uuid from 'uuid'
 
 @Injectable()
 export class FilesService {
-
-    private filePath = '/home/files';
     
     async createFile(file: any): Promise<string> {
         try {
             const fileName = uuid.v4() + file.originalname;
+            const filePath = '/home/files';
             console.log(filePath)
             if(!fs.existsSync(filePath)) {
                 fs.mkdirSync(filePath, { recursive: true});
@@ -30,6 +29,7 @@ export class FilesService {
 
         async removeFile(fileName: string){
             try {
+                const filePath = '/home/files';
                 fs.rmSync(path.join(filePath, fileName));
                 console.log("file deleted");
                 return fileName;
@@ -59,8 +59,8 @@ export class FilesService {
                 const { contentType, data } = media;
                 const buffer = Buffer.from(data, 'base64');
                 const extension = contentType.split('/')[1];
+                const filePath = '/home/files';
                 const filename = `${uuid.v4()}.${extension}`; // Unique filename using UUIDv4
-                
                 if(!fs.existsSync(filePath)) {
                     fs.mkdirSync(filePath, { recursive: true});
                 }
@@ -70,7 +70,7 @@ export class FilesService {
                 
                 // Replace the image source with the unique filename
                 const localPath = `${process.env.FILEPATH}/${filename}`;
-                
+                console.log(localPath);
                 content = content.replace(`data:${contentType};base64,${data}`, localPath);
               });
             
