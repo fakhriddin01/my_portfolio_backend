@@ -22,7 +22,9 @@ export class ProjectService {
   }
 
   findAll() {
-    return this.projectRepo.findAll();
+    return this.projectRepo.findAll({
+        order: [['id', 'ASC']]
+    });
   }
 
   async findOne(id: number) {
